@@ -1,0 +1,22 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.grid {
+  display: flex;
+}
+
+.grid-cell {
+  flex: 1;
+  margin: 0.1em;
+  background: lightgrey;
+  color: lightgrey;
+  height: 3em;
+}
+
+.selected {
+  background: red;
+}
