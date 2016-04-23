@@ -5,7 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register src/*spec.js src/**/*spec.js --bail --reporter=dot --slow=1",
-    "watch:test": "npm run test -- --watch"
+    "watch:test": "npm run test -- --watch",
+    "start": "concurrently 'npm run _start:assets' 'npm run _start:js' 'npm run _start:html'",
+    "_start:assets": "chokidar --initial 'src/assets/**/*' -c 'npm run _build:assets'",
+    "_start:html": "chokidar --initial 'src/index.html' -c 'npm run _build:html'",
+    "_start:js": "mkdir -p dist; watchify --transform=babelify --outfile=dist/index.js src/index.js --verbose",
+    "pre_build": "mkdir -p dist/assets",
+    "build": "npm run _build:js && npm run _build:assets && npm run _build:html",
+    "_build:js": "browserify src/index.js --transform=babelify --outfile=dist/index.js",
+    "_build:assets": "rm -r dist/assets; cp -r src/assets dist/assets",
+    "_build:html": "rm -r dist/*.html; cp -r src/*.html dist"
   },
   "repository": {
     "type": "git",
@@ -25,9 +34,13 @@
     "babel-register": "^6.7.2",
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
+    "chokidar": "^1.4.3",
+    "chokidar-cli": "^1.2.0",
+    "concurrently": "^2.0.0",
     "hamjest": "^2.13.0",
     "mocha": "^2.4.5",
     "react": "^15.0.1",
-    "react-dom": "^15.0.1"
+    "react-dom": "^15.0.1",
+    "watchify": "^3.7.0"
   }
 }
