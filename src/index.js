@@ -52,23 +52,41 @@ class Cell extends React.Component {
 }
 
 const appState = {
-  position: [0, 0]
+  position: [0, 0],
+  direction: [1, 0],
+};
+
+const COLUMN_INDEX = 0;
+const ROW_INDEX = 1;
+const fixNewPosition = (position) => {
+  if (position[COLUMN_INDEX] > columnCount) {
+    position[COLUMN_INDEX] = columnCount - 1;
+  }
+  if (position[COLUMN_INDEX] < 0) {
+    position[COLUMN_INDEX] = 0;
+  }
+  if (position[ROW_INDEX] > rowCount) {
+    position[ROW_INDEX] = rowCount - 1;
+  }
+  if (position[ROW_INDEX] < 0) {
+    position[ROW_INDEX] = 0;
+  }
+  return position;
 };
 
 window.addEventListener('keydown', ({ code }) => {
   if (code === 'ArrowRight') {
-    appState.position[0]++;
+    appState.direction = [1, 0];
   }
   if (code === 'ArrowLeft') {
-    appState.position[0]--;
+    appState.direction = [-1, 0];
   }
   if (code === 'ArrowUp') {
-    appState.position[1]--;
+    appState.direction = [0, -1];
   }
   if (code === 'ArrowDown') {
-    appState.position[1]++;
+    appState.direction = [0, 1];
   }
-  render(appState);
 });
 
 
@@ -77,5 +95,15 @@ const render = (appState = {}) => {
   ReactDOM.render(page, document.getElementById('app'));
 };
 
-render(appState);
+setInterval(() => {
+  
+  appState.position = [
+    appState.position[COLUMN_INDEX] + appState.direction[COLUMN_INDEX],
+    appState.position[ROW_INDEX] + appState.direction[ROW_INDEX]
+  ];
+  appState.position = fixNewPosition(appState.position);
+  render(appState);
+  
+  render(appState);
+}, 100);
 
