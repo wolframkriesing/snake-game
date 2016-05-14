@@ -1,10 +1,8 @@
 language: node_js
 node_js:
-  - "5.11"
+  - "6"
 
 after_success:
-  - chmod +x ./scripts/*.sh
-  - chmod +x ./scripts/for-travis/*.sh
   - ./scripts/for-travis/build-and-deploy.sh
 
 env:
