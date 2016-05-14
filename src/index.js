@@ -46,7 +46,7 @@ class Cell extends React.Component {
       classNames.push('selected');
     }
     return (
-      <div className={ classNames.join(' ') }>.</div>
+      <div className={ classNames.join(' ') } />
     );
   }
 }
