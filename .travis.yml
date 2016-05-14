@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - "5.11"
+
+after_success:
+  - chmod +x ./scripts/*.sh
+  - chmod +x ./scripts/for-travis/*.sh
+  - ./scripts/for-travis/build-and-deploy.sh
+
+env:
+ global:
+ - GH_REF: github.com/wolframkriesing/snake-game.git
+ - secure: ocM5MBGEMgqS22NJf5uaLpXsqlrVvvbJd+tWV2IO26qNMHmmxzypThjCfphS0uOtz8P38RRlw9834Ni5+3ZN4EB6kx4XUjw1NJGxSzJFEC5HtJK5RnUO/5w1lsYqtG3xav52U+aDcIlKlia1NxUFLCY4tb/CkHVaMPcri06chcrx5huq4/DCWpdjsdwCE3LdZHat9IKNEswINTryXac7c2sJzYj8cbeXfUP40cnLY4DFjgmf3c193HsdUBBZ47RPjuk4ioRP70mpFYe15rIvB4XDpZ0GsAbN5M5gwoe8fVJjaN4e5tL8CwofrG9KXnbpeV9QTWuxqoBM2sC4GpmnvkrUlHWDXgz6QpFfm7qTNgiqA3KwA2+sfLfgZoFRP1e9X6CugUF8/txWNIzVNQERjO1rQghz77Waw5goXq/x/Q1IL8aRSm3RSOY03i40ge0WmoiAoT590Mg4bX0yFHjEv3BF2U4VfA7spw3Y5Ft15SnAchKqI2TsUQPDpTDG8svorHT9BA5VPNi401KoUWI9XZ4T1ljZIa6E6mla6OZwQnLPfSwHmGscWI2bff6vROlHqwiPPBzp3QJnmXrfldfb4A613dyyKo0zMJ0klKY39/napI2kzCJF2hGTL5KeZUcJhxeofpFpo07ln0zl1Zt3r2BVHnDOZ/gtvH5ApHKjlzI=
