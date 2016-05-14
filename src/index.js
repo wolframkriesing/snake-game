@@ -1,10 +1,13 @@
 import React from 'react';
 
+const rowCount = 20;
+const columnCount = 20;
+
 class Page extends React.Component {
   render() {
     const { position } = this.props.appState;
     let rows = [];
-    for (let i=0; i<10; i++) {
+    for (let i=0; i<rowCount; i++) {
       if (position[1] === i) {
         rows.push(<Row selectedCell={ position[0] } />);
       } else {
@@ -23,7 +26,7 @@ class Row extends React.Component {
   render() {
     const { selectedCell = null } = this.props;
     let cells = [];
-    for (let i=0; i<10; i++) {
+    for (let i=0; i<columnCount; i++) {
       if (selectedCell === i) {
         cells.push(<Cell selected />);
       } else {
