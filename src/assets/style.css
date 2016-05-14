@@ -20,3 +20,10 @@ body, html {
 .selected {
   background: red;
 }
+
+kbd {
+  border: 1px outset grey;
+  border-radius: 3px;
+  width: 1em;
+  padding: 2px 0.2em;
+}
