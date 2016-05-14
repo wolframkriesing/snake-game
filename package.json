@@ -10,7 +10,7 @@
     "_start:assets": "chokidar --initial 'src/assets/**/*' -c 'npm run _build:assets'",
     "_start:html": "chokidar --initial 'src/index.html' -c 'npm run _build:html'",
     "_start:js": "mkdir -p dist; watchify --transform=babelify --outfile=dist/index.js src/index.js --verbose",
-    "pre_build": "mkdir -p dist/assets",
+    "prebuild": "mkdir -p dist/assets",
     "build": "npm run _build:js && npm run _build:assets && npm run _build:html",
     "_build:js": "browserify src/index.js --transform=babelify --outfile=dist/index.js",
     "_build:assets": "rm -r dist/assets; cp -r src/assets dist/assets",
